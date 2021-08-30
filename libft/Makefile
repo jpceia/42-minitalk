@@ -1,34 +1,95 @@
 NAME		= libft.a
 
-SRCDIR		= src
-OBJDIR		= obj
-INCDIR		= .
+SRC_DIR		= src
+OBJ_DIR		= obj
 
-# SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c)
-SRCS		= $(wildcard $(SRCDIR)/*.c)
-OBJS		= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+SRCS		:= \
+			ft_memset.c \
+			ft_bzero.c \
+			ft_memcpy.c \
+			ft_memccpy.c \
+			ft_memmove.c \
+			ft_memchr.c \
+			ft_memcmp.c \
+			ft_calloc.c \
+			ft_strlen.c \
+			ft_strcat.c \
+			ft_strlcat.c \
+			ft_strlcpy.c \
+			ft_strchr.c \
+			ft_strrchr.c \
+			ft_strnstr.c \
+			ft_strcmp.c \
+			ft_strncmp.c \
+			ft_strdup.c \
+			ft_strndup.c \
+			ft_substr.c \
+			ft_strmapi.c \
+			ft_strjoin.c \
+			ft_strtrim.c \
+			ft_split.c \
+			ft_strwc.c \
+			ft_contains.c \
+			ft_strreverse.c \
+			ft_straddc.c \
+			ft_empty_string.c \
+			ft_atoi.c \
+			ft_itoa.c \
+			ft_atol.c \
+			ft_lltoa.c \
+			ft_lltoa_base.c \
+			ft_ulltoa.c \
+			ft_ulltoa_base.c \
+			ft_imin.c \
+			ft_imax.c \
+			ft_mod.c \
+			ft_isalpha.c \
+			ft_isdigit.c \
+			ft_isalnum.c \
+			ft_isascii.c \
+			ft_isprint.c \
+			ft_isspace.c \
+			ft_toupper.c \
+			ft_tolower.c \
+			ft_putchar_fd.c \
+			ft_putstr_fd.c \
+			ft_putendl_fd.c \
+			ft_putnbr_fd.c \
+			ft_putchar.c \
+			ft_putstr.c \
+			ft_putendl.c \
+			ft_putnbr.c \
+			ft_get_next_line.c \
+			ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c
+
+SRCS		:= $(addprefix $(SRC_DIR)/, $(SRCS))
+
+OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC			= gcc
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -I$(INCDIR)
+CFLAGS		= -Wall -Wextra -Werror -I.
 
 all:		$(NAME)
 
-test:
-		echo $(SRCS)
-
-$(OBJS)	:	$(OBJDIR)/%.o : $(SRCDIR)/%.c
-			@mkdir -p $(dir $@)
-			@$(CC) $(CFLAGS) -c $< -o $@
-			@echo "Compiled "$<" successfully"
+$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJS)
-			@ar rc $@ $(OBJS)
-			@echo "Created "$@
+			ar rc $@ $(OBJS)
 
 clean:
-			$(RM) -r $(OBJDIR)
+			$(RM) -r $(OBJ_DIR)
 
 fclean:		clean
 			$(RM) $(NAME)

@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 21:46:54 by jpceia            #+#    #+#             */
-/*   Updated: 2021/08/27 17:49:14 by jceia            ###   ########.fr       */
+/*   Created: 2021/08/27 15:58:01 by jceia             #+#    #+#             */
+/*   Updated: 2021/08/27 17:58:18 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_putstr(char *s)
 {
-	int		size;
-
-	size = 0;
-	while (lst)
-	{
-		size++;
-		lst = lst->next;
-	}
-	return (size);
+	ft_putstr_fd(s, STDOUT_FILENO);
 }

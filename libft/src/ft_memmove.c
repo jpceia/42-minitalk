@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpceia <jpceia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:09:24 by jpceia            #+#    #+#             */
-/*   Updated: 2021/02/10 01:05:08 by jpceia           ###   ########.fr       */
+/*   Updated: 2021/08/27 17:49:34 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	char	*ptr_dest;
 	char	*ptr_src;
-	char	*holder;
 	size_t	index;
 
 	ptr_dest = (char *)dest;
 	ptr_src = (char *)src;
-	holder = malloc(n);
-	if (!holder)
-		return (NULL);
 	index = 0;
-	while (index < n)
+	if (src > dest)
 	{
-		holder[index] = ptr_src[index];
-		index++;
+		while (index < n)
+		{
+			ptr_dest[index] = ptr_src[index];
+			index++;
+		}
 	}
-	index = 0;
-	while (index < n)
+	else
 	{
-		ptr_dest[index] = holder[index];
-		index++;
+		while (index < n)
+		{
+			ptr_dest[n - index - 1] = ptr_src[n - index - 1];
+			index++;
+		}
 	}
-	free(holder);
 	return (dest);
 }

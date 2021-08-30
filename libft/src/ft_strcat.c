@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 21:46:54 by jpceia            #+#    #+#             */
-/*   Updated: 2021/08/27 17:49:14 by jceia            ###   ########.fr       */
+/*   Created: 2021/08/27 18:21:35 by jceia             #+#    #+#             */
+/*   Updated: 2021/08/27 18:35:14 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+char	*ft_strcat(char *dest, const char *src)
 {
-	int		size;
+	int	n;
+	int	index;
 
-	size = 0;
-	while (lst)
+	n = ft_strlen(dest);
+	index = 0;
+	while (src[index])
 	{
-		size++;
-		lst = lst->next;
+		dest[n + index] = src[index];
+		index++;
 	}
-	return (size);
+	dest[n + index] = 0;
+	return (dest);
 }

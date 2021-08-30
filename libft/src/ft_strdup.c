@@ -6,7 +6,7 @@
 /*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 03:20:23 by jceia             #+#    #+#             */
-/*   Updated: 2021/04/09 17:51:32 by jceia            ###   ########.fr       */
+/*   Updated: 2021/08/27 17:54:19 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strdup(const char *src)
 	unsigned int	index;
 	char			*dest;
 
-	if (!src)
-		return (NULL);
 	index = 0;
 	while (src[index])
 		index++;

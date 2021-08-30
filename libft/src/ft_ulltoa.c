@@ -3,32 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ulltoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpceia <jpceia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 06:08:23 by jpceia            #+#    #+#             */
-/*   Updated: 2021/08/26 21:19:56 by jpceia           ###   ########.fr       */
+/*   Updated: 2021/08/27 18:26:30 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static	char	*single_char_str(char *buf, char c)
-{
-	buf[0] = c;
-	buf[1] = '\0';
-	return (buf);
-}
 
 char	*ft_ulltoa(unsigned long long nb)
 {
 	int		index;
 	char	*buf;
 
+	if (nb == 0)
+		return (ft_straddc(NULL, '0'));
 	buf = malloc(21);
 	if (!buf)
 		return (NULL);
-	if (nb == 0)
-		return (single_char_str(buf, '0'));
 	index = 0;
 	while (nb)
 	{

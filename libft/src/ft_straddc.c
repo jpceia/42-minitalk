@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_straddc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 21:46:54 by jpceia            #+#    #+#             */
-/*   Updated: 2021/08/27 17:49:14 by jceia            ###   ########.fr       */
+/*   Created: 2021/08/27 15:58:21 by jceia             #+#    #+#             */
+/*   Updated: 2021/08/27 18:28:24 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+char	*ft_straddc(char *s, char c)
 {
-	int		size;
+	char	*s_new;
+	int		len;
 
-	size = 0;
-	while (lst)
+	if (s)
+		len = ft_strlen(s);
+	else
+		len = 0;
+	s_new = malloc(len + 2);
+	if (!s_new)
+		return (NULL);
+	if (s)
 	{
-		size++;
-		lst = lst->next;
+		ft_memcpy(s_new, s, len);
+		free(s);
 	}
-	return (size);
+	s_new[len] = c;
+	s_new[len + 1] = 0;
+	return (s_new);
 }

@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 21:46:54 by jpceia            #+#    #+#             */
-/*   Updated: 2021/08/27 17:49:14 by jceia            ###   ########.fr       */
+/*   Created: 2021/08/27 18:17:22 by jceia             #+#    #+#             */
+/*   Updated: 2021/08/27 18:27:41 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+char	*ft_strndup(char const *str, int n)
 {
+	char	*res;
 	int		size;
 
 	size = 0;
-	while (lst)
-	{
+	while (str[size] && size < n)
 		size++;
-		lst = lst->next;
-	}
-	return (size);
+	res = malloc(size + 1);
+	if (!res)
+		return (NULL);
+	res[size] = 0;
+	while (size--)
+		res[size] = str[size];
+	return (res);
 }

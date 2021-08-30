@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpceia <jpceia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 18:28:39 by jpceia            #+#    #+#             */
-/*   Updated: 2021/02/15 20:48:02 by jceia            ###   ########.fr       */
+/*   Created: 2021/08/27 15:23:20 by jceia             #+#    #+#             */
+/*   Updated: 2021/08/27 15:23:25 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!res)
 		return (NULL);
 	index = 0;
-	while (s[start + index] && index < len)
+	while (index < len)
 	{
 		res[index] = s[start + index];
 		index++;

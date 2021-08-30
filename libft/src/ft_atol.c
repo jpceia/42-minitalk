@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 21:46:54 by jpceia            #+#    #+#             */
-/*   Updated: 2021/08/27 17:49:14 by jceia            ###   ########.fr       */
+/*   Created: 2021/08/27 17:02:42 by jceia             #+#    #+#             */
+/*   Updated: 2021/08/27 18:29:19 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+long	ft_atol(const char *str)
 {
-	int		size;
+	long	nb;
+	int		sgn;
 
-	size = 0;
-	while (lst)
+	nb = 0;
+	while (ft_isspace(*str))
+		str++;
+	sgn = 1;
+	if (*str == '-' || *str == '+')
 	{
-		size++;
-		lst = lst->next;
+		if (*str == '-')
+			sgn = -1;
+		str++;
 	}
-	return (size);
+	while (ft_isdigit(*str))
+	{
+		nb = 10 * nb + sgn * (*str - '0');
+		str++;
+	}
+	return (nb);
 }
