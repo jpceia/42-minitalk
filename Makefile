@@ -6,15 +6,17 @@
 #    By: jceia <jceia@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/30 20:04:48 by jceia             #+#    #+#              #
-#    Updated: 2021/08/30 20:04:49 by jceia            ###   ########.fr        #
+#    Updated: 2021/08/30 21:27:49 by jceia            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFTDIR	= ./libft
 LIBFT		= libft/libft.a
 
-SRCS_SRC	= server.c
-SRCS_CLI	= client.c
+DEPS		= .
+
+SRCS_SRV	= minitalk.c server.c
+SRCS_CLI	= minitalk.c client.c
 
 OBJS_SRV	= $(SRCS_SRV:.c=.o)
 OBJS_CLI	= $(SRCS_CLI:.c=.o)
@@ -27,9 +29,9 @@ NAME_CLI	= client
 CC			= gcc
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror -I$(DEPS) -g
 
-all:		$(NAME)
+all:		$(NAME_SRV) $(NAME_CLI)
 
 .c.o:
 			$(CC) $(CFLAGS) -I$(LIBFTDIR) -c $< -o $(<:.c=.o)
@@ -37,13 +39,11 @@ all:		$(NAME)
 $(LIBFT):
 			$(MAKE) -C $(LIBFTDIR)
 
-$(NAME):	$(NAME_SRV) $(NAME_CLI)
-
-$(NAME_SRV):$(OBJS) $(LIBFT)
-			$(CC) $(CFLAGS) $^ -o $@
+$(NAME_SRV):$(OBJS_SRV) $(LIBFT)
+			$(CC) $(CFLAGS) $^ -o $(NAME_SRV)
 
 $(NAME_CLI):$(OBJS_CLI) $(LIBFT)
-			$(CC) $(CFLAGS) $^ -o $@
+			$(CC) $(CFLAGS) $^ -o $(NAME_CLI)
 
 clean:
 			$(MAKE) -C $(LIBFTDIR) clean
