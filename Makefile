@@ -6,7 +6,7 @@
 #    By: jceia <jceia@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/30 20:04:48 by jceia             #+#    #+#              #
-#    Updated: 2021/08/30 21:27:49 by jceia            ###   ########.fr        #
+#    Updated: 2021/08/31 00:36:25 by jceia            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,11 @@ NAME_CLI	= client
 CC			= gcc
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -I$(DEPS) -g
+CFLAGS		= -Wall -Wextra -Werror -I$(DEPS) -I$(LIBFTDIR) -g
 
 all:		$(NAME_SRV) $(NAME_CLI)
+
+$(NAME):	all
 
 .c.o:
 			$(CC) $(CFLAGS) -I$(LIBFTDIR) -c $< -o $(<:.c=.o)
@@ -40,10 +42,12 @@ $(LIBFT):
 			$(MAKE) -C $(LIBFTDIR)
 
 $(NAME_SRV):$(OBJS_SRV) $(LIBFT)
-			$(CC) $(CFLAGS) $^ -o $(NAME_SRV)
+			$(CC) $(CFLAGS) $^ -o $@
 
 $(NAME_CLI):$(OBJS_CLI) $(LIBFT)
-			$(CC) $(CFLAGS) $^ -o $(NAME_CLI)
+			$(CC) $(CFLAGS) $^ -o $@
+
+bonus:		all
 
 clean:
 			$(MAKE) -C $(LIBFTDIR) clean
@@ -55,4 +59,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re bonus
