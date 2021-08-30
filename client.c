@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpceia <jpceia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jceia <jceia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 18:31:12 by jpceia            #+#    #+#             */
-/*   Updated: 2021/08/24 01:16:07 by jpceia           ###   ########.fr       */
+/*   Updated: 2021/08/30 20:25:36 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minitalk.h"
+#include "libft.h"
 #include <signal.h>
 #include <stdio.h>
-#include "libft.h"
+
 
 /*
  * Client
@@ -22,11 +24,22 @@
  */
 int	main(int argc, char **argv)
 {
+	struct sigaction sa;
 	int		sig;
 	int		i;
 	int		server_pid;
 	char	*msg;
 
+	if (argc != 3)
+	{
+		ft_putendl("This program requires two arguments:");
+		ft_putendl("\t1. Server PID");
+		ft_putendl("\t2. Message to send to the server");
+		return (EXIT_FAILURE);
+	}
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_handler =
 	if (argc == 3)
 	{
 		server_pid = ft_atoi(argv[1]);
